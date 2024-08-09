@@ -8,6 +8,8 @@ const uuid = require("uuid");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
 
+// THIS BACKEND IS FOR SAMPLE EMBEDDING ONLY! THIS IS NOT PRODUCTION AUTHENTICATION, PLEASE DO NOT REPLICATE THIS FOR PRODUCTION EMBEDDING  
+
 app.use(bodyParser.json());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
@@ -56,7 +58,7 @@ app.post("/login", async (req, res) => {
       {
         username: email,
         password,
-        strategy: "local", // Specify the authentication strategy
+        strategy: "local", // Specify the authentication strategy // NOT A PRODUCTION METHOD DO NOT PUBLISH APP 
       },
       {
         httpsAgent: new (require("https").Agent)({ rejectUnauthorized: false }),

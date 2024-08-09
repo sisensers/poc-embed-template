@@ -94,20 +94,16 @@ function SelfService(): JSX.Element {
         <Button
           onClick={openChartLibrary}
           variant="contained"
-          color="info"
-          style={{ color: "white", marginBottom: "16px" }}
+          color="primary"
+          sx={{ marginBottom: 2, marginRight: 1 }}
         >
           Build Your Report
         </Button>
         <Button
           onClick={exportToPDF}
           variant="contained"
-          color="info"
-          style={{
-            color: "white",
-            marginLeft: "8px",
-            marginBottom: "16px",
-          }}
+          color="primary"
+          sx={{ marginBottom: 2, marginLeft: 1 }}
         >
           Export
         </Button>
