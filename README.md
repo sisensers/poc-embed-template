@@ -1,46 +1,136 @@
-# Getting Started with Create React App
+# POC Template Setup Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide will walk you through the setup process for the POC Template, including configuring your backend, updating your frontend with your Sisense server URL, and customizing branding elements like logos and color schemes.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before you start, ensure that you have the following installed on your system:
 
-### `npm start`
+- Node.js (https://nodejs.org)
+- npm (Node Package Manager)
+- Git (optional, but recommended)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Backend Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Step 1: Create the `.env` File
 
-### `npm test`
+1. Navigate to the `backend` folder of your project.
+2. Create a new file named `.env`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Step 2: Add Environment Variables
 
-### `npm run build`
+In the `.env` file, add the following environment variables with your Sisense server URL and shared secret:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+SISENSE_URL=https://your-sisense-server.com
+SHARED_SECRET=your-shared-secret
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Replace `https://your-sisense-server.com` with your actual Sisense server URL.
+- Replace `your-shared-secret` with the shared secret used for authentication.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Step 3: Install Backend Dependencies
 
-### `npm run eject`
+1. Open your terminal.
+2. Navigate to the `backend` directory of the project:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   cd backend
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install the required dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   npm install
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Step 4: Run the Backend Server
 
-## Learn More
+Start the backend server by running:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+node server.js
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You should see the following message, indicating that your backend server is running:
+
+```
+JWT handler listening on port 5000
+```
+
+## Frontend Setup
+
+### Step 1: Update the Sisense Server URL
+
+1. Open the `src/pages/EmbedSDK` component file in your code editor.
+2. Locate the following section:
+
+   ```javascript
+   <SisenseDashboardEmbed
+     sisenseUrl={"https://YOURSISENSESERVERURL.com"}
+     dashboardId={dashboardID}
+     frameHeight="1900px"
+   />
+   ```
+
+3. Replace `"https://YOURSISENSESERVERURL.com"` with the same Sisense server URL you used in the `.env` file.
+
+### Step 2: Install Frontend Dependencies
+
+1. Open a new terminal in the `poc-template` directory (your project’s root directory).
+2. Install the frontend dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Step 3: Run the Frontend Application
+
+Start the frontend application by running:
+
+```bash
+npm start
+```
+
+This command will launch the application in your default web browser. By default, the application will be available at `http://localhost:3000`.
+
+## Customization
+
+### Updating the Logo
+
+To update the logo:
+
+1. Replace the `logo.png` file in the `public` folder with your desired logo file.
+2. Ensure that the file name remains `logo.png` so it is correctly referenced in the application.
+
+### Customizing Color Schemes
+
+The color schemes of your application can be updated by modifying the following files:
+
+- **`src/components/Layout.tsx`**: Modify the colors and styles for the layout, drawer, and navigation bar.
+- **`src/themeContext.tsx`**: Customize the theme settings, including primary and secondary colors, typography, and palette settings.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Environment Variables Not Loaded:**
+   - Ensure that your `.env` file is located in the correct directory (`backend`) and that the variables are correctly named and assigned.
+   
+2. **Server Not Running:**
+   - If you don’t see the message `JWT handler listening on port 5000`, check your terminal for error messages and ensure that all dependencies are installed.
+
+3. **Frontend Not Reflecting Changes:**
+   - If the frontend doesn’t show your updates, ensure that you have correctly replaced the URL in `src/pages/EmbedSDK` and restarted the frontend server.
+
+### Getting Help
+
+If you encounter issues not covered in this guide, consider checking the following resources:
+
+- Node.js and npm documentation
+- Sisense API documentation
+- Stack Overflow for troubleshooting specific errors
+
+## Conclusion
+
+By following this guide, you should now have a working POC Template with a functioning backend server, updated frontend, and customized branding elements. You can further customize the application to fit your needs and explore additional features as required.
