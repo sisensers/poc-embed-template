@@ -11,7 +11,7 @@ function EmbedSDK() {
 
   return (
     <SisenseDashboardEmbed
-      sisenseUrl={"https://csdklivedemo.sisensepoc.com"}
+      sisenseUrl={"https://YOURURL.sisensepoc.com"}
       dashboardId={dashboardID}
       frameHeight="1900px"
     />
