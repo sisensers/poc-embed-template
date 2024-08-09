@@ -32,18 +32,8 @@ app.post("/login", async (req, res) => {
   try {
     console.log("Received login request:", { email, password });
 
-    let sisenseUrl, sharedSecret;
-
-    // Determine Sisense instance based on email domain
-    if (email.endsWith("@shopsense-eu.com")) {
-      sisenseUrl = process.env.SISENSE_URL_EU;
-      sharedSecret = process.env.SHARED_SECRET_EU;
-      console.log("Routing to EU instance:", sisenseUrl);
-    } else {
-      sisenseUrl = process.env.SISENSE_URL_US;
-      sharedSecret = process.env.SHARED_SECRET_US;
-      console.log("Routing to US instance:", sisenseUrl);
-    }
+    const sisenseUrl = process.env.SISENSE_URL;
+    const sharedSecret = process.env.SHARED_SECRET;
 
     // Validate the Sisense URL and shared secret
     if (!sisenseUrl || !sharedSecret) {
