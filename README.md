@@ -62,18 +62,15 @@ JWT handler listening on port 5000
 
 ### Step 1: Update the Sisense Server URL
 
-1. Open the `src/pages/EmbedSDK` component file in your code editor.
+1. Edit the `.env` component file in your code editor.
 2. Locate the following section:
 
-   ```javascript
-   <SisenseDashboardEmbed
-     sisenseUrl={"https://YOURSISENSESERVERURL.com"}
-     dashboardId={dashboardID}
-     frameHeight="1900px"
-   />
+   ```
+   REACT_APP_SISENSE_URL=https://YOURSISENSESERVERURL.com
+
    ```
 
-3. Replace `"https://YOURSISENSESERVERURL.com"` with the same Sisense server URL you used in the `.env` file.
+3. Replace `"https://YOURSISENSESERVERURL.com"` with the same Sisense server URL.
 
 ### Step 2: Install Frontend Dependencies
 
