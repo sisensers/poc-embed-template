@@ -27,7 +27,7 @@ import { DashboardProvider, useDashboard } from '../DashboardContext';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 const pages = [
   { name: 'Embed SDK', path: '/embed-sdk', icon: <DashboardIcon /> },
   { name: 'Compose SDK', path: '/compose-sdk', icon: <SettingsIcon /> },
@@ -40,10 +40,13 @@ function Layout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { setDashboardID } = useDashboard();
   const [dashboards, setDashboards] = React.useState<{ oid: string; title: string }[]>([]);
+  const [selectedDashboard, setSelectedDashboard] = React.useState<string | null>(null);
   const theme = useTheme();
   const location = useLocation();
 
   const logo = lightLogo; 
+
+  const sisenseUrl = process.env.REACT_APP_SISENSE_URL || '';
 
   React.useEffect(() => {
     const fetchDashboards = async () => {
@@ -53,9 +56,9 @@ function Layout({ children }: { children: React.ReactNode }) {
           throw new Error('No token found');
         }
 
-        const response = await axios.get('https://csdklivedemo.sisensepoc.com/api/v1/dashboards', {
+        const response = await axios.get(`${sisenseUrl}/api/v1/dashboards`, {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         });
         setDashboards(response.data);
@@ -73,6 +76,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   const handleDashboardSelect = (oid: string) => {
     setDashboardID(oid);
+    setSelectedDashboard(oid);
   };
 
   const drawer = (
@@ -90,6 +94,31 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
       </Toolbar>
       <Divider />
+      <Accordion sx={{ background: 'inherit', color: '#1976d2' }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#1976d2' }} />}>
+          <ListItemIcon><DashboardIcon sx={{ color: '#1976d2' }} /></ListItemIcon>
+          <ListItemText primary="Select a Dashboard" />
+        </AccordionSummary>
+        <AccordionDetails>
+          <List>
+            {dashboards.map(dashboard => (
+              <ListItemButton
+                key={dashboard.oid}
+                onClick={() => handleDashboardSelect(dashboard.oid)}
+                sx={{
+                  backgroundColor: selectedDashboard === dashboard.oid ? '#e3f2fd' : 'inherit',
+                  '&:hover': {
+                    backgroundColor: '#e3f2fd',
+                  },
+                }}
+              >
+                <ListItemText primary={dashboard.title} sx={{ color: '#1976d2' }} />
+              </ListItemButton>
+            ))}
+          </List>
+        </AccordionDetails>
+      </Accordion>
+      <Divider sx={{ my: 2 }} /> {/* Divider between Dashboards and other nav items */}
       <Box sx={{ flexGrow: 1 }}>
         <List>
           {pages.map((page) => {
@@ -114,30 +143,6 @@ function Layout({ children }: { children: React.ReactNode }) {
               </ListItem>
             );
           })}
-          <Accordion sx={{ background: 'inherit', color: '#1976d2' }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#1976d2' }} />}>
-              <ListItemIcon><DashboardIcon sx={{ color: '#1976d2' }} /></ListItemIcon>
-              <ListItemText primary="Dashboards" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                {dashboards.map(dashboard => (
-                  <ListItemButton
-                    key={dashboard.oid}
-                    onClick={() => handleDashboardSelect(dashboard.oid)}
-                    sx={{
-                      backgroundColor: 'inherit',
-                      '&:hover': {
-                        backgroundColor: '#e3f2fd',
-                      },
-                    }}
-                  >
-                    <ListItemText primary={dashboard.title} sx={{ color: '#1976d2' }} />
-                  </ListItemButton>
-                ))}
-              </List>
-            </AccordionDetails>
-          </Accordion>
         </List>
       </Box>
       <Box p={2}>
@@ -231,7 +236,7 @@ function Layout({ children }: { children: React.ReactNode }) {
               boxSizing: 'border-box',
               width: drawerWidth,
               backgroundColor: '#ffffff',
-              boxShadow: '2px 0px 8px rgba(0, 0, 0, 0.1)', // Add a subtle shadow for more emphasis
+              boxShadow: '2px 0px 8px rgba(0, 0, 0, 0.1)', 
             },
           }}
           open

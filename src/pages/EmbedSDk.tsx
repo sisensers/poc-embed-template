@@ -4,6 +4,7 @@ import { useDashboard } from '../DashboardContext';
 
 function EmbedSDK() {
   const { dashboardID } = useDashboard();
+  const sisenseUrl = process.env.REACT_APP_SISENSE_URL || '';
 
   if (!dashboardID) {
     return <div>Please select a dashboard to view.</div>;
@@ -11,7 +12,7 @@ function EmbedSDK() {
 
   return (
     <SisenseDashboardEmbed
-      sisenseUrl={"https://csdklivedemo.sisensepoc.com"}
+      sisenseUrl={sisenseUrl}
       dashboardId={dashboardID}
       frameHeight="1900px"
     />
