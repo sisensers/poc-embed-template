@@ -12,11 +12,7 @@ function EmbedSDK() {
 
   return (
     <SisenseDashboardEmbed
-<<<<<<< HEAD
-      sisenseUrl={sisenseUrl}
-=======
-      sisenseUrl={"https://YOURURL.sisensepoc.com"}
->>>>>>> 0ae79ab65b1b45d5e297780fd20a2665be525c87
+      sisenseUrl={sisenseUrl} 
       dashboardId={dashboardID}
       frameHeight="1900px"
     />
