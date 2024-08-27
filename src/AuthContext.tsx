@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     if (storedToken && storedEmail) {
       setToken(storedToken);
-      const url = "https://csdklivedemo.sisensepoc.com"; // Replace with your Sisense instance URL
+      const url = "https://partech.sisensepoc.com"; // Replace with your Sisense instance URL
       setSisenseUrl(url);
       setInitialized(true);
     } else {

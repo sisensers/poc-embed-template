@@ -28,7 +28,7 @@ export const ThemeModeProvider = ({ children }: { children: ReactNode }) => {
 const lightTheme: ThemeSettings = {
   chart: {
     textColor: '#3C3C44',
-    backgroundColor: '#f4f6f8',
+    backgroundColor: '#FFFFFF',
   },
   general: {
     brandColor: '#2196f3',
@@ -36,9 +36,13 @@ const lightTheme: ThemeSettings = {
     primaryButtonTextColor: 'white',
   },
   palette: {
-    variantColors: ['#2196f3', '#0d47a1', '#050A30', '#7EC8E3'],
+    variantColors: ["#24264A", 
+    "#7A9CFF", 
+    "#4B5FF0",
+    "#F85432",
+    "#FCA142"],
   },
   typography: {
-    fontFamily: 'roboto',
+    fontFamily: 'poppins',
   },
 };

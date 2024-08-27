@@ -31,7 +31,8 @@ const drawerWidth = 300;
 const pages = [
   { name: 'Embed SDK', path: '/embed-sdk', icon: <DashboardIcon /> },
   { name: 'Compose SDK', path: '/compose-sdk', icon: <SettingsIcon /> },
-  { name: 'Self Service', path: '/self-service', icon: <PersonIcon /> }
+  { name: 'Self Service', path: '/self-service', icon: <PersonIcon /> },
+  { name: 'Custom Dashboard', path: '/custom-dashboard', icon: <DashboardIcon /> }
 ];
 const lightLogo = '/logo.png'; 
 const sisenseLogo = '/sisenseLogo.png';
@@ -94,9 +95,9 @@ function Layout({ children }: { children: React.ReactNode }) {
         />
       </Toolbar>
       <Divider />
-      <Accordion sx={{ background: 'inherit', color: '#1976d2' }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#1976d2' }} />}>
-          <ListItemIcon><DashboardIcon sx={{ color: '#1976d2' }} /></ListItemIcon>
+      <Accordion sx={{ background: 'inherit', color: '#24264A' }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#24264A' }} />}>
+          <ListItemIcon><DashboardIcon sx={{ color: '#24264A' }} /></ListItemIcon>
           <ListItemText primary="Select a Dashboard" />
         </AccordionSummary>
         <AccordionDetails>
@@ -106,13 +107,13 @@ function Layout({ children }: { children: React.ReactNode }) {
                 key={dashboard.oid}
                 onClick={() => handleDashboardSelect(dashboard.oid)}
                 sx={{
-                  backgroundColor: selectedDashboard === dashboard.oid ? '#e3f2fd' : 'inherit',
+                  backgroundColor: selectedDashboard === dashboard.oid ? '#7A9CFF' : 'inherit',
                   '&:hover': {
-                    backgroundColor: '#e3f2fd',
+                    backgroundColor: '#7A9CFF',
                   },
                 }}
               >
-                <ListItemText primary={dashboard.title} sx={{ color: '#1976d2' }} />
+                <ListItemText primary={dashboard.title} sx={{ color: '#24264A' }} />
               </ListItemButton>
             ))}
           </List>
@@ -129,16 +130,16 @@ function Layout({ children }: { children: React.ReactNode }) {
                   component={Link}
                   to={page.path}
                   sx={{
-                    backgroundColor: isActive ? '#e3f2fd' : 'inherit',
+                    backgroundColor: isActive ? '#F85432' : 'inherit',
                     '&:hover': {
-                      backgroundColor: '#bbdefb',
+                      backgroundColor: '#FCA142',
                     },
                   }}
                 >
-                  <ListItemIcon sx={{ color: isActive ? '#1976d2' : 'inherit' }}>
+                  <ListItemIcon sx={{ color: isActive ? '#FFFFFF' : 'inherit' }}>
                     {page.icon}
                   </ListItemIcon>
-                  <ListItemText primary={page.name} sx={{ color: isActive ? '#1976d2' : 'inherit' }} />
+                  <ListItemText primary={page.name} sx={{ color: isActive ? '#FFFFFF' : 'inherit' }} />
                 </ListItemButton>
               </ListItem>
             );
@@ -149,13 +150,13 @@ function Layout({ children }: { children: React.ReactNode }) {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#1976d2',
+            backgroundColor: '#24264A',
             color: 'white',
             width: '100%',
             textTransform: 'none',
             fontWeight: 'bold',
             '&:hover': {
-              backgroundColor: '#1565c0',
+              backgroundColor: '#7A9CFF',
             },
           }}
           href="https://sisense.dev/guides/"
@@ -187,7 +188,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           width: `calc(100% - ${drawerWidth}px)`,
           ml: `${drawerWidth}px`,
-          backgroundColor: '#1976d2', 
+          backgroundColor: '#24264A', 
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
         }}
       >
@@ -267,7 +268,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         palette: {
           mode: 'light',
           primary: {
-            main: '#1976d2', 
+            main: '#24264A', 
           },
           background: {
             default: '#ffffff',

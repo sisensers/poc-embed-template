@@ -9,6 +9,7 @@ import ComposeSDK from './pages/ComposeSDK';
 import SelfService from './pages/SelfService';
 import SignIn from './pages/login';
 import { useThemeMode } from './themeContext'; // Custom hook for theme mode
+import CustomDashboard from './pages/CustomDashboard';
 
 const App = () => {
   const { token, sisenseUrl } = useAuth();
@@ -32,6 +33,7 @@ const App = () => {
               <Route path="embed-sdk" element={<EmbedSDK />} />
               <Route path="compose-sdk" element={<ComposeSDK />} />
               <Route path="self-service" element={<SelfService />} />
+              <Route path="custom-dashboard" element={<CustomDashboard />} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
