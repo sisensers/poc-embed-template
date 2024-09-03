@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface AuthContextType {
   token: string | null;
   sisenseUrl: string | null;
   setToken: (token: string | null) => void;
-  setSisenseUrl: (url: string) => void;
+  setSisenseUrl: (url: string | null) => void;
 }
 
 interface AuthProviderProps {
@@ -17,23 +17,28 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [sisenseUrl, setSisenseUrl] = useState<string | null>(null);
-  const [initialized, setInitialized] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const storedToken = localStorage.getItem('sisenseToken');
-    const storedEmail = localStorage.getItem('email');
+    const storedSisenseUrl = localStorage.getItem('sisenseUrl');
 
-    if (storedToken && storedEmail) {
+    if (storedToken && storedSisenseUrl) {
       setToken(storedToken);
-      const url = "https://partech.sisensepoc.com"; // Replace with your Sisense instance URL
-      setSisenseUrl(url);
-      setInitialized(true);
+      setSisenseUrl(storedSisenseUrl);
+
+      // Navigate only if the user is not already on the correct page
+      if (location.pathname === '/login') {
+        navigate('/');
+      }
     } else {
-      navigate('/login');
-      setInitialized(true); // Allow the login page to render
+      // Only navigate to /login if not already on the login page
+      if (location.pathname !== '/login') {
+        navigate('/login');
+      }
     }
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   return (
     <AuthContext.Provider value={{ token, sisenseUrl, setToken, setSisenseUrl }}>
