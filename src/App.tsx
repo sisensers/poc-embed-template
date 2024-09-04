@@ -9,19 +9,42 @@ import ComposeSDK from './pages/ComposeSDK';
 import SelfService from './pages/SelfService';
 import SignIn from './pages/login';
 import CustomDashboard from './pages/CustomDashboard';
+import { useThemeMode } from './themeContext'; 
+
+const theme = {
+  chart: {
+    textColor: '#3C3C44',
+    backgroundColor: '#FFFFFF',
+  },
+  general: {
+    brandColor: '#2196f3',
+    backgroundColor: '#f4f6f8',
+    primaryButtonTextColor: 'white',
+  },
+  palette: {
+    variantColors: ["#24264A", 
+    "#7A9CFF", 
+    "#4B5FF0",
+    "#F85432",
+    "#FCA142"],
+  },
+  typography: {
+    fontFamily: '',
+  },
+};
+
 
 const App = () => {
   const { token, sisenseUrl } = useAuth();
 
   if (!token || !sisenseUrl) {
-    // If not authenticated, navigate to login page
     return <Navigate to="/login" replace />;
   }
 
   return (
     <SisenseContextProvider url={sisenseUrl} token={token}>
+      <ThemeProvider theme={theme}>
       <AiContextProvider>
-        <ThemeProvider>
           <Routes>
             <Route path="/" element={<Layout><Outlet /></Layout>}>
               <Route path="embed-sdk" element={<EmbedSDK />} />
@@ -31,8 +54,8 @@ const App = () => {
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
-        </ThemeProvider>
       </AiContextProvider>
+      </ThemeProvider>
     </SisenseContextProvider>
   );
 };

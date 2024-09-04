@@ -28,12 +28,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setToken(storedToken);
       setSisenseUrl(storedSisenseUrl);
 
-      // Navigate only if the user is not already on the correct page
       if (location.pathname === '/login') {
         navigate('/');
       }
     } else {
-      // Only navigate to /login if not already on the login page
       if (location.pathname !== '/login') {
         navigate('/login');
       }
