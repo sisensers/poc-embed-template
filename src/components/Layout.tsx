@@ -32,7 +32,9 @@ const pages = [
   { name: 'Embed SDK', path: '/embed-sdk', icon: <DashboardIcon /> },
   { name: 'Compose SDK', path: '/compose-sdk', icon: <SettingsIcon /> },
   { name: 'Self Service', path: '/self-service', icon: <PersonIcon /> },
-  { name: 'Custom Dashboard', path: '/custom-dashboard', icon: <DashboardIcon /> }
+  { name: 'Custom Dashboard', path: '/custom-dashboard', icon: <DashboardIcon /> },
+  { name: 'Redemptions Dashboard', path: '/redemptions-dashboard', icon: <DashboardIcon /> },
+  { name: 'Figma Dashboard', path: '/figma-dashboard', icon: <DashboardIcon /> }
 ];
 const lightLogo = '/logo.png'; 
 const sisenseLogo = '/sisenseLogo.png';
@@ -81,8 +83,9 @@ function Layout({ children }: { children: React.ReactNode }) {
   };
 
   const drawer = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#ffffff' }}>
-      <Toolbar>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#24264A' }}>
+      {/* White background for the top section where the logo is */}
+      <Toolbar sx={{ backgroundColor: '#FFFFFF' }}>
         <Box
           component="img"
           src={logo}
@@ -94,10 +97,11 @@ function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
       </Toolbar>
-      <Divider />
-      <Accordion sx={{ background: 'inherit', color: '#24264A' }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#24264A' }} />}>
-          <ListItemIcon><DashboardIcon sx={{ color: '#24264A' }} /></ListItemIcon>
+      <Divider sx={{ backgroundColor: '#FFFFFF' }} /> {/* Divider after logo */}
+      {/* The rest of the drawer remains purple */}
+      <Accordion sx={{ background: 'inherit', color: '#FFFFFF' }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#FFFFFF' }} />}>
+          <ListItemIcon><DashboardIcon sx={{ color: '#FFFFFF' }} /></ListItemIcon>
           <ListItemText primary="Select a Dashboard" />
         </AccordionSummary>
         <AccordionDetails>
@@ -113,13 +117,13 @@ function Layout({ children }: { children: React.ReactNode }) {
                   },
                 }}
               >
-                <ListItemText primary={dashboard.title} sx={{ color: '#24264A' }} />
+                <ListItemText primary={dashboard.title} sx={{ color: '#FFFFFF' }} />
               </ListItemButton>
             ))}
           </List>
         </AccordionDetails>
       </Accordion>
-      <Divider sx={{ my: 2 }} /> {/* Divider between Dashboards and other nav items */}
+      <Divider sx={{ my: 2, backgroundColor: '#FFFFFF' }} /> {/* Divider between Dashboards and other nav items */}
       <Box sx={{ flexGrow: 1 }}>
         <List>
           {pages.map((page) => {
@@ -136,10 +140,10 @@ function Layout({ children }: { children: React.ReactNode }) {
                     },
                   }}
                 >
-                  <ListItemIcon sx={{ color: isActive ? '#FFFFFF' : 'inherit' }}>
+                  <ListItemIcon sx={{ color: '#FFFFFF' }}>
                     {page.icon}
                   </ListItemIcon>
-                  <ListItemText primary={page.name} sx={{ color: isActive ? '#FFFFFF' : 'inherit' }} />
+                  <ListItemText primary={page.name} sx={{ color: '#FFFFFF' }} />
                 </ListItemButton>
               </ListItem>
             );
@@ -150,13 +154,14 @@ function Layout({ children }: { children: React.ReactNode }) {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#24264A',
-            color: 'white',
+            backgroundColor: '#FFFFFF',
+            color: '#24264A',
             width: '100%',
             textTransform: 'none',
             fontWeight: 'bold',
             '&:hover': {
               backgroundColor: '#7A9CFF',
+              color: '#FFFFFF',
             },
           }}
           href="https://sisense.dev/guides/"
@@ -164,7 +169,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         >
           Documentation
         </Button>
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2, backgroundColor: '#FFFFFF' }} />
         <Box
           component="img"
           src={sisenseLogo}
@@ -178,33 +183,36 @@ function Layout({ children }: { children: React.ReactNode }) {
       </Box>
     </Box>
   );
+  
+  
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
-        sx={{
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-          width: `calc(100% - ${drawerWidth}px)`,
-          ml: `${drawerWidth}px`,
-          backgroundColor: '#24264A', 
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
-        }}
-      >
-        <Toolbar>
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h6" noWrap component="div">
-              Your Application
-            </Typography>
-          </Box>
-          <Tooltip title="Open settings">
-            <IconButton sx={{ p: 0 }}>
-              <Avatar alt="User Avatar" src="" />
-            </IconButton>
-          </Tooltip>
-        </Toolbar>
-      </AppBar>
+  position="fixed"
+  sx={{
+    zIndex: (theme) => theme.zIndex.drawer + 1,
+    width: `calc(100% - ${drawerWidth}px)`,
+    ml: `${drawerWidth}px`,
+    backgroundColor: '#FFFFFF', // Updated to white
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', 
+  }}
+>
+  <Toolbar>
+    <Box sx={{ flexGrow: 1 }}>
+      <Typography variant="h6" noWrap component="div" sx={{ color: '#24264A' }}> {/* Updated text color */}
+        Your Application
+      </Typography>
+    </Box>
+    <Tooltip title="Open settings">
+      <IconButton sx={{ p: 0 }}>
+        <Avatar alt="User Avatar" src="" />
+      </IconButton>
+    </Tooltip>
+  </Toolbar>
+</AppBar>
+
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

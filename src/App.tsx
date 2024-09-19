@@ -10,6 +10,9 @@ import SelfService from './pages/SelfService';
 import SignIn from './pages/login';
 import CustomDashboard from './pages/CustomDashboard';
 import { useThemeMode } from './themeContext'; 
+import RedemptionsDashboard from './pages/RedemptionsDashboard';
+import figma from './pages/figmaDashboard';
+import FigmaDashboard from './pages/figmaDashboard';
 
 const theme = {
   chart: {
@@ -51,6 +54,8 @@ const App = () => {
               <Route path="compose-sdk" element={<ComposeSDK />} />
               <Route path="self-service" element={<SelfService />} />
               <Route path="custom-dashboard" element={<CustomDashboard />} />
+              <Route path="redemptions-dashboard" element={<RedemptionsDashboard />} />
+              <Route path="figma-dashboard" element={<FigmaDashboard />} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
