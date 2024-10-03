@@ -32,16 +32,12 @@ const SignIn = () => {
       });
 
       if (response.data.token && response.data.sisenseToken) {
-        // Store the Sisense token, custom JWT, and Sisense URL in localStorage
         localStorage.setItem('sisenseToken', response.data.sisenseToken);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('sisenseUrl', response.data.sisenseUrl);
 
-        // Set the Sisense token and URL in the context
-        setToken(response.data.sisenseToken); // Using the Sisense access token
+        setToken(response.data.sisenseToken); 
         setSisenseUrl(response.data.sisenseUrl);
-
-        // Redirect to the main app page
         navigate('/');
       } else {
         console.error('Login failed: Tokens not returned');

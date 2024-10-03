@@ -8,11 +8,11 @@ import EmbedSDK from './pages/EmbedSDk';
 import ComposeSDK from './pages/ComposeSDK';
 import SelfService from './pages/SelfService';
 import SignIn from './pages/login';
-import { useThemeMode } from './themeContext'; // Custom hook for theme mode
+import { useThemeMode } from './themeContext'; 
 
 const App = () => {
   const { token, sisenseUrl } = useAuth();
-  const { theme } = useThemeMode(); // Ensure this hook is used correctly
+  const { theme } = useThemeMode();
 
   if (!token || !sisenseUrl) {
     return (

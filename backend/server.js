@@ -59,7 +59,6 @@ app.post("/login", async (req, res) => {
 
     if (response.data && response.data.access_token) {
       const token = buildJwt(email, email.split("@")[0], "", sharedSecret);
-      // Respond with both the Sisense access token and your custom JWT token
       res.json({ token, sisenseUrl: sisenseUrl, sisenseToken: response.data.access_token });
     } else {
       res.status(401).json({ error: "Authentication failed" });

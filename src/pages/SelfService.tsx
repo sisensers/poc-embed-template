@@ -119,12 +119,12 @@ function SelfService(): JSX.Element {
               width: "100%",
               height: "calc(100vh - 230px)",
               overflow: "auto",
-              backgroundColor: "white",
+              backgroundColor: "#FFFFFF",
               border: "2px solid transparent",
               borderRadius: "8px",
               padding: "16px",
               marginBottom: "16px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
             }}
           >
             <ResponsiveGridLayout
@@ -162,10 +162,12 @@ function SelfService(): JSX.Element {
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      border: "1px solid #ddd",
-                      borderRadius: "4px",
+                      backgroundColor: "#FFFFFF", 
+                      border: "1px solid #ddd",  
+                      borderRadius: "0px",
                       overflow: "hidden",
                       position: "relative",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                     }}
                   >
                     <div
@@ -198,7 +200,7 @@ function SelfService(): JSX.Element {
                       <IconButton
                         onClick={() => handleDeleteChart(index)}
                         style={{
-                          color: "#888", // Off-grey color
+                          color: "#888", // Off-grey color for delete icon
                         }}
                       >
                         <DeleteIcon />

@@ -26,6 +26,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { DashboardProvider, useDashboard } from '../DashboardContext';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useAuth } from '../AuthContext'; // Import the custom AuthContext
 
 const drawerWidth = 300;
 const pages = [
@@ -43,6 +44,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   const [selectedDashboard, setSelectedDashboard] = React.useState<string | null>(null);
   const theme = useTheme();
   const location = useLocation();
+  const { logout } = useAuth(); 
 
   const logo = lightLogo; 
 
@@ -118,7 +120,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           </List>
         </AccordionDetails>
       </Accordion>
-      <Divider sx={{ my: 2 }} /> {/* Divider between Dashboards and other nav items */}
+      <Divider sx={{ my: 2 }} />
       <Box sx={{ flexGrow: 1 }}>
         <List>
           {pages.map((page) => {
@@ -174,6 +176,27 @@ function Layout({ children }: { children: React.ReactNode }) {
             objectFit: 'contain',
           }}
         />
+        <Divider sx={{ my: 2 }} />
+        {/* Logout Button */}
+        <Button
+          variant="outlined"
+          sx={{
+            borderColor: '#1976d2',
+            color: '#1976d2',
+            width: '100%',
+            textTransform: 'none',
+            fontWeight: 'bold',
+            backgroundColor: '#ffffff',
+            '&:hover': {
+              backgroundColor: '#e3f2fd',
+              borderColor: '#1565c0',
+              color: '#1565c0',
+            },
+          }}
+          onClick={logout}
+        >
+          Logout
+        </Button>
       </Box>
     </Box>
   );
