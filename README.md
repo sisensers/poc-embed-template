@@ -1,5 +1,8 @@
 # POC Template Setup Guide
 
+![AppGif](https://github.com/user-attachments/assets/d4668509-b9cc-49dc-8748-7e977a42dbe8)
+
+
 This guide will walk you through the setup process for the POC Template, including configuring your backend, updating your frontend with your Sisense server URL, and customizing branding elements like logos and color schemes.
 
 ## Prerequisites
